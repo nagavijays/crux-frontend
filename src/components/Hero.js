@@ -17,6 +17,7 @@ const Hero = () => {
   };
 
   const handleYyyymmChange = (event) => {
+    console.log("Value " + event.target.value);
     setYyyymm(event.target.value);
   };
 
@@ -46,26 +47,9 @@ const Hero = () => {
   const handleSearchButtonClick = async (event) => {
     // event.preventDefault();
 
-    //https://chromeuxreport.googleapis.com/v1/records:queryRecord?key=AIzaSyC9O0Dx9sJ6HufMEf5DB3jDOKwPsu0x3og
-    // Make a call to the Crux API
-    // try {
-    //   const response = await fetch(`https://chromeuxreport.googleapis.com/v1/records:queryRecord?key=`, {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       origin: url,
-    //       formFactor: "DESKTOP",
-    //       metrics: ["cumulative_layout_shift", "first_contentful_paint", "first_input_delay", "interaction_to_next_paint", "largest_contentful_paint", "experimental_time_to_first_byte"]
-    //     }),
-    //   });
-
-    // axios query to http://localhost:4040/query?originUrl=https://developer.intuit.com&yyyymm=202403
-
     try {
-      const response = await axios.get(`http://localhost:4040/query?originUrl=${url}&yyyymm=202403`);
-
-
+      const response = await axios.get(`http://localhost:4040/query?originUrl=${url}&yyyymm=${yyyymm}`);
       // Set the table data
-      console.log("data:::::::::" + JSON.stringify(response.data[0]));
       var formattedData = formatData(response.data[0]);
       setTableData(formattedData);
     } catch (error) {
