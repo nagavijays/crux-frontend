@@ -17,7 +17,6 @@ const Hero = () => {
   };
 
   const handleYyyymmChange = (event) => {
-    console.log("Value " + event.target.value);
     setYyyymm(event.target.value);
   };
 
